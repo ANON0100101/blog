@@ -40,4 +40,12 @@ class LoginSerializer(serializers.Serializer):
         if not user:
             raise serializers.ValidationError('Неверный пароль')
         attrs['user'] = user
-        return attrs 
+        return attrs
+
+class CreatePasswordSerializer(serializers.Serializer):
+    new_password = serializers.CharField(required=True, min_length=6 , write_only=True)
+    current_password= serializers.CharField(required=True, write_only=True)
+
+    class Meta:
+        models = User
+        fields =('email', 'password', 'new_password', 'current_password')
