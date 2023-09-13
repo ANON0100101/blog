@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     #apps
     'applications.account',
     'applications.post',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -151,10 +152,13 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES':[
-        # 'rest_framework.authentication.TokenAuthentication'\
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
+    ),
+    # 'DEFAULT_AUTHENTICATION_CLASSES':[
+    #     # 'rest_framework.authentication.TokenAuthentication'\
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ],
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE' : 1
@@ -168,7 +172,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=155)
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=50)
     
 }
 

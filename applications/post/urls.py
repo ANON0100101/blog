@@ -1,7 +1,10 @@
 from django.urls import path,include
 from applications.post.views import *
 from rest_framework.routers import DefaultRouter
+
+
 router = DefaultRouter()
+router.register('comment', CommentModelVIewSet)
 router.register('', PostApiView)
 
 
@@ -14,3 +17,4 @@ urlpatterns = [
 #     path('update/<int:pk>/',UpdatePostView.as_view()),
 #     path('delete/<int:pk>/',DeletePostView.as_view()),
 ]
+urlpatterns += router.urls
